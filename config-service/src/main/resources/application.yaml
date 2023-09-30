@@ -1,9 +1,8 @@
 server:
-  profiles:
-    active: git
   port: 6060
 spring:
   cloud:
+    config:
       server:
         git:
           default-label: config-server

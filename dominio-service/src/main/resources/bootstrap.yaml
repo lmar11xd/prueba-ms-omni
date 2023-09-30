@@ -5,3 +5,12 @@ spring:
     config:
       enabled: true
       uri: http://localhost:6060
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/db_prueba_omni?useSSL=false
+    username: root
+    password: mysql
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
