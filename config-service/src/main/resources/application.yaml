@@ -7,5 +7,6 @@ spring:
         default-label: config-server
         uri: https://github.com/lmar11xd/prueba-ms-omni
         search-paths: config-data
+        clone-on-start: true
 application:
   name: config-service
