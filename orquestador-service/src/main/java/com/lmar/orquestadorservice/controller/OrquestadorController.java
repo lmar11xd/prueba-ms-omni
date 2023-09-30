@@ -1,7 +1,7 @@
 package com.lmar.orquestadorservice.controller;
 
 import com.lmar.orquestadorservice.model.dto.RequestValidarTO;
-import com.lmar.orquestadorservice.service.ValidadorService;
+import com.lmar.orquestadorservice.service.OrquestadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/validador")
-public class ValidadorController {
+@RequestMapping("api/orquestador")
+public class OrquestadorController {
 
     @Autowired
-    private ValidadorService validadorService;
+    private OrquestadorService orquestadorService;
 
     @PostMapping("/validar")
     public ResponseEntity<?> validar(@RequestBody RequestValidarTO request) {
-        String result = validadorService.validar();
+        String result = orquestadorService.validar();
         return ResponseEntity.ok(result);
     }
 }
