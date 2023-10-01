@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "df616715-5f5e-4052-ae70-9f3ccec7d792",
+		"name": "Prueba MS Omni",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3512991"
+	},
+	"item": [
+		{
+			"name": "Registrar Dominio - Parametro Correctos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"Telefono\",\r\n    \"precio\": 30,\r\n    \"cantidad\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/orquestador/validar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orquestador",
+						"validar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar Dominio - Parametro Incorrectos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"\",\r\n    \"precio\": 0,\r\n    \"cantidad\": 80\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/orquestador/validar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orquestador",
+						"validar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Dominios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/orquestador/listarDominios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orquestador",
+						"listarDominios"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

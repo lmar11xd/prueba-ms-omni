@@ -1,6 +1,7 @@
 package com.lmar.orquestadorservice.controller;
 
 import com.lmar.orquestadorservice.model.dto.DominioTO;
+import com.lmar.orquestadorservice.model.dto.ResponseTO;
 import com.lmar.orquestadorservice.service.OrquestadorService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import jakarta.validation.Valid;
@@ -23,14 +24,20 @@ public class OrquestadorController {
     @GetMapping("/listarDominios")
     public ResponseEntity<?> listarDominios() {
         List<DominioTO> dominios = orquestadorService.listarDominios();
-        return ResponseEntity.ok(dominios);
+        ResponseTO<List<DominioTO>> response = new ResponseTO<>();
+        response.setStatus(HttpStatus.OK.value());
+        response.setData(dominios);
+        return ResponseEntity.ok(response);
     }
 
     @CircuitBreaker(name = "dominioCB", fallbackMethod = "fallBackGuardarDominio")
     @PostMapping("/validar")
-    public ResponseEntity<?> validar(@Valid @RequestBody DominioTO dominio) {
+    public ResponseEntity<ResponseTO<DominioTO>> validar(@Valid @RequestBody DominioTO dominio) {
         DominioTO nuevoDominio = orquestadorService.registrarDominio(dominio);
-        return ResponseEntity.ok(nuevoDominio);
+        ResponseTO<DominioTO> response = new ResponseTO<>();
+        response.setStatus(HttpStatus.OK.value());
+        response.setData(nuevoDominio);
+        return ResponseEntity.ok(response);
     }
 
     public ResponseEntity<List<DominioTO>> fallBackListarDominios(RuntimeException e) {
