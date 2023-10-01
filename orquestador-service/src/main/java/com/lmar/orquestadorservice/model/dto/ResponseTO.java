@@ -1,5 +1,12 @@
 package com.lmar.orquestadorservice.model.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ResponseTO<T> {
     private int status;
     private String message;
