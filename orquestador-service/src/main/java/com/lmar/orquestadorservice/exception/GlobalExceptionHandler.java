@@ -24,7 +24,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ErrorResponseTO> runtimeExceptionHandler(RuntimeException ex, WebRequest webRequest) {
-        logger.error("Error", ex);
+        logger.error("Log Error", ex);
         ErrorResponseTO error = ErrorResponseTO.builder()
                 .timestamp(LocalDateTime.now())
                 .path(webRequest.getDescription(false))
@@ -36,7 +36,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseTO> manejarGlobalException(Exception ex, WebRequest webRequest){
-        logger.error("Error", ex);
+        logger.error("Log Error", ex);
         ErrorResponseTO error = ErrorResponseTO.builder()
                 .timestamp(LocalDateTime.now())
                 .path(webRequest.getDescription(false))
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponseTO> manejarResourceNotFoundException(ResourceNotFoundException ex, WebRequest webRequest){
-        logger.error("Error", ex);
+        logger.error("Log Error", ex);
         ErrorResponseTO error = ErrorResponseTO.builder()
                 .timestamp(LocalDateTime.now())
                 .path(webRequest.getDescription(false))
@@ -60,7 +60,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        logger.error("Error", ex);
+        logger.error("Log Error", ex);
         Map<String,String> lstError = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String field = ((FieldError)error).getField();
