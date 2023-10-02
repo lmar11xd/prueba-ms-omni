@@ -7,7 +7,7 @@ spring:
       uri: http://localhost:6060
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/db_prueba_omni?useSSL=false
+    url: jdbc:mysql://localhost/db_prueba_omni?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: mysql
   jpa:
