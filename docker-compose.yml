@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  config-service:
+    image: omni-config-service #nombre de la imagen que hemos creado
+    restart: always
+    container_name: omni-config
+    ports:
+      - '6060:6060'
+    networks:
+      - 'omni-network'
+  eureka-service:
+    image: omni-eureka-service #nombre de la imagen que hemos creado
+    restart: always
+    container_name: omni-eureka
+    ports:
+      - '8761:8761'
+    networks:
+      - 'omni-network'
+    depends_on:
+      - config-service
+  gateway-service:
+    image: omni-gateway-service #nombre de la imagen que hemos creado
+    restart: always
+    container_name: omni-gateway
+    ports:
+      - '7070:7070'
+    networks:
+      - 'omni-network'
+    depends_on:
+      - config-service
+  orquestador-service:
+    image: omni-orquestador-service #nombre de la imagen que hemos creado
+    restart: always
+    container_name: omni-orquestador
+    networks:
+      - 'omni-network'
+    depends_on:
+      - config-service
+  dominio-service:
+    image: omni-dominio-service #nombre de la imagen que hemos creado
+    restart: always
+    container_name: omni-dominio
+    networks:
+      - 'omni-network'
+    depends_on:
+      - config-service
+      - mysqldb
+  mysqldb: 
+    container_name: mysqldb
+    image: mysql
+    volumes:
+      -  /home/user/Desktop/db:/var/lib/mysql
+    ports: 
+     - 3307:3306
+    networks:
+      - 'omni-network'
+    environment:
+      MYSQL_DATABASE: db_prueba_omni
+      MYSQL_ROOT_PASSWORD: mysql
+networks:
+  omni-network: #necesitamos crear en una red para alojar los servicios en ella y que puedan comunicarse entre sí
+ 

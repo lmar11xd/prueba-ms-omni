@@ -1,3 +1,8 @@
+FROM maven:3.8.5-openjdk-17 as build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
 FROM openjdk:17
-ADD target/eureka-service-0.0.1-SNAPSHOT.jar eureka-service.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/eureka-service.jar"]
+COPY --from=build /home/app/target/*.jar app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
